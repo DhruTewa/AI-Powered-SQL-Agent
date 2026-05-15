@@ -1,6 +1,6 @@
 <div align="center">
 
-# SQL AI Agent
+# AI POWERED SQL Agent
 
 ### An LLM-powered autonomous agent that converts natural language into executable SQL
 
@@ -276,34 +276,3 @@ Performance evaluated on the [Spider](https://yale-lily.github.io/spider) text-t
 - [ ] Query result visualization
 
 ---
-
-## 🤝 Contributing
-
-Contributions are welcome. Please open an issue first to discuss what you'd like to change, then submit a pull request with tests.
-
-```bash
-# Run the test suite
-pytest tests/ -v
-
-# Run linting
-ruff check sql_agent/
-```
-
----
-
-## 📄 License
-
-This project is licensed under the **MIT License** — see [LICENSE](LICENSE) for details.
-
----
-
-## 👤 Author
-
-**Your Name**
-[GitHub](https://github.com/your-username) · [LinkedIn](https://linkedin.com/in/your-username) · [Portfolio](https://your-portfolio.com)
-
-<div align="center">
-
-*Built with Python, LangChain, and a healthy obsession for clean abstractions.*
-
-</div>
