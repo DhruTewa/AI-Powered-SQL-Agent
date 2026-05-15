@@ -1,0 +1,10 @@
+/data
+/database
+/SQLAGENT
+.env
+
+# Virtual environments
+venv/
+.venv/
+env/
+.env/

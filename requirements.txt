@@ -1,0 +1,12 @@
+pandas
+numpy
+plotly
+plotly-express
+ollama
+ipywidgets
+jupyter
+duckdb
+openai
+pointblank
+google-genai
+anthropic
