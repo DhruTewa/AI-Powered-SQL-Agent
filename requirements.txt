@@ -10,3 +10,6 @@ openai
 pointblank
 google-genai
 anthropic
+psycopg2-binary
+sqlalchemy
+python-dotenv
