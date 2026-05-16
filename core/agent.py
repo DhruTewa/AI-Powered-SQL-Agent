@@ -4,8 +4,9 @@ from sqlalchemy import create_engine, text
 import ollama
 import re
 import pandas as pd
-from schema_context import get_schema_context
 import sys
+from core.schema_context import get_schema_context
+from core.validator import validate_sql
 
 load_dotenv()
 
@@ -50,7 +51,7 @@ def extract_sql(llm_response: str) -> str:
     if match:
         return match.group(1).strip()
     return llm_response.strip()
-    
+  
     
 def execute_query(sql:str) -> pd.DataFrame:
     engine = get_engine()
@@ -67,13 +68,24 @@ def run_agent(question:str) ->pd.DataFrame:
     print("Calling llm...")
     response = call_llm(prompt)           # needs the prompt
     sql     = extract_sql(response)         # needs the response
-    print(f"Generated SQL:\n{sql}\n")
+    validated_sql = validate_sql(sql)
+    print(f"Generated SQL:\n{validated_sql}\n")
     print(f"executing query...")
-    result  = execute_query(sql)       # needs the sql
+    try:
+        result  = execute_query(validated_sql)       # needs the sql
+    except Exception as e:
+        print("SQL failed,attempting self correction...")
+        correction_prompt = f"""
+        The following SQL failed with this error :
+        
+        SQL :{sql}
+        Error : {e}
+        
+        Fix the SQL and return only the corrected query
+        """
+        corrected_response = call_llm(correction_prompt)
+        corrected_sql = extract_sql(corrected_response)
+        validate_sql(corrected_sql)   # add this line
+        print(f"Corrected SQL:\n{corrected_sql}\n")
+        result = execute_query(corrected_sql)
     return result
-    
-if __name__ == "__main__":
-    
-    question = sys.argv[1]        # reads the first argument from the terminal
-    result = run_agent(question)
-    print(result.to_string(index=False))

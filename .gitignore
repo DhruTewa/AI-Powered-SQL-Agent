@@ -2,6 +2,7 @@
 /database
 /SQLAGENT
 .env
+PROGRESS.md
 
 # Virtual environments
 venv/
