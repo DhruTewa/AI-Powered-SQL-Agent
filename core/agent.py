@@ -5,8 +5,10 @@ import ollama
 import re
 import pandas as pd
 import sys
-from core.schema_context import get_schema_context
+#from core.schema_context import get_schema_context
+from core.retriever import retrieve_schema
 from core.validator import validate_sql
+from core.llm import call_llm
 
 load_dotenv()
 
@@ -38,12 +40,12 @@ def build_prompt(question:str,schema:str)-> str:
     """
     return prompt
 
-def call_llm(prompt:str)-> str:
-    model = os.getenv("OLLAMA_MODEL","llama3.2")
-    message = [{"role":"user","content":prompt}]
-    response = ollama.chat(model= model,messages = message)
-    text = response["message"]["content"]
-    return text.strip()
+# def call_llm(prompt:str)-> str:
+#     model = os.getenv("OLLAMA_MODEL","llama3.2")
+#     message = [{"role":"user","content":prompt}]
+#     response = ollama.chat(model= model,messages = message)
+#     text = response["message"]["content"]
+#     return text.strip()
 
 
 def extract_sql(llm_response: str) -> str:
@@ -62,7 +64,7 @@ def execute_query(sql:str) -> pd.DataFrame:
 
 def run_agent(question:str) ->pd.DataFrame:
     print("Fetching schema...")
-    schema  = get_schema_context()     # from schema_context.py
+    schema  = retrieve_schema(question)     # from schema_context.py
     print("Building prompt...")
     prompt  = build_prompt(question, schema)   # needs question + schema
     print("Calling llm...")

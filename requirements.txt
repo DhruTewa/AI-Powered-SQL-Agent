@@ -13,3 +13,4 @@ anthropic
 psycopg2-binary
 sqlalchemy
 python-dotenv
+chromadb
