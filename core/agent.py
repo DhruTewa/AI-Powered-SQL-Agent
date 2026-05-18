@@ -1,11 +1,8 @@
 import os
-from dotenv import load_dotenv
-from sqlalchemy import create_engine, text
-import ollama
 import re
 import pandas as pd
-import sys
-#from core.schema_context import get_schema_context
+from dotenv import load_dotenv
+from sqlalchemy import create_engine, text
 from core.retriever import retrieve_schema
 from core.validator import validate_sql
 from core.llm import call_llm
@@ -74,7 +71,8 @@ def run_agent(question:str) ->pd.DataFrame:
     print(f"Generated SQL:\n{validated_sql}\n")
     print(f"executing query...")
     try:
-        result  = execute_query(validated_sql)       # needs the sql
+        result  = execute_query(validated_sql) 
+        final_sql = validated_sql # needs the sql
     except Exception as e:
         print("SQL failed,attempting self correction...")
         correction_prompt = f"""
@@ -90,4 +88,5 @@ def run_agent(question:str) ->pd.DataFrame:
         validate_sql(corrected_sql)   # add this line
         print(f"Corrected SQL:\n{corrected_sql}\n")
         result = execute_query(corrected_sql)
-    return result
+        final_sql = corrected_sql
+    return final_sql,result
