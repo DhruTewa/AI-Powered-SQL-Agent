@@ -128,9 +128,10 @@ with col1:
 with col2:
     st.markdown("**AI / LLM**")
     st.markdown("""
-- Ollama (local LLM + embeddings)
+- Ollama (local LLM)
 - OpenAI GPT-4o *(API key required)*
 - Anthropic Claude *(API key required)*
+- OpenAI text-embedding-3-small (embeddings)
 - ChromaDB (vector store)
     """)
 

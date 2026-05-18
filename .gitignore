@@ -3,7 +3,6 @@
 /SQLAGENT
 .env
 PROGRESS.md
-chroma_db/
 
 # Virtual environments
 venv/

@@ -1,5 +1,7 @@
 import sys
 from core.agent import run_agent
+import pandas as pd
+pd.options.display.float_format = '{:,.2f}'.format
 
 if __name__ == "__main__":
     

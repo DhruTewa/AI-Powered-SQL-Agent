@@ -52,7 +52,7 @@ with st.sidebar:
     )
     st.divider()
     st.caption("**Database:** AdventureWorks")
-    st.caption("**Embedding:** nomic-embed-text (Ollama)")
+    st.caption("**Embedding:** text-embedding-3-small (OpenAI)")
     st.caption("**Vector Store:** ChromaDB")
 
 # ── Question input ─────────────────────────────────────────────────────────────
@@ -83,6 +83,7 @@ if st.button("Run Query", type="primary", use_container_width=True):
 
             with st.spinner("Generating SQL and running query..."):
                 sql, result = run_agent(question)
+                result = result.round(2)
 
             elapsed = time.time() - start
 
