@@ -3,6 +3,10 @@
 /SQLAGENT
 .env
 PROGRESS.md
+# Database dump files
+adventureworks*.sql
+*_import_log.txt
+import_log.txt
 
 # Virtual environments
 venv/
