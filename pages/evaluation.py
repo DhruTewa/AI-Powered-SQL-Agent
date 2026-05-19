@@ -3,7 +3,7 @@ import os
 import time
 import pandas as pd
 from core.agent import run_agent
-from core.ui import render_header
+from core.ui import render_header, ollama_available
 
 # ── Page configuration ─────────────────────────────────────────────────────────
 st.set_page_config(
@@ -36,9 +36,9 @@ TEST_QUESTIONS = [
 # ── Provider registry ──────────────────────────────────────────────────────────
 # available=False means API key not yet configured — checkbox will be disabled
 PROVIDERS = {
-    "ollama":    {"label": "Ollama (local)",        "available": True},
-    "openai":    {"label": "OpenAI (gpt-4o)",       "available": True},
-    "anthropic": {"label": "Anthropic (Claude)",    "available": False},
+    "ollama":    {"label": "Ollama (local)",     "available": ollama_available()},
+    "openai":    {"label": "OpenAI (gpt-4o)",    "available": True},
+    "anthropic": {"label": "Anthropic (Claude)", "available": False},
 }
 
 # ── Model selector ─────────────────────────────────────────────────────────────

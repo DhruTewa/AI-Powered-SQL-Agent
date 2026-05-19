@@ -2,6 +2,16 @@ import streamlit as st
 
 PROJECT_NAME = "AI POWERED SQL AGENT"
 
+
+def ollama_available() -> bool:
+    """Returns True if Ollama is running locally, False on cloud deployments."""
+    try:
+        import ollama
+        ollama.list()
+        return True
+    except Exception:
+        return False
+
 # Global CSS injected on every page
 # Increases base font size by ~4 points and styles the page title consistently
 GLOBAL_CSS = """

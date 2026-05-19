@@ -3,7 +3,7 @@ import os
 import time
 from dotenv import load_dotenv
 from core.agent import run_agent
-from core.ui import render_header
+from core.ui import render_header, ollama_available
 
 load_dotenv()
 
@@ -30,9 +30,11 @@ if "question" not in st.session_state:
 with st.sidebar:
     st.header("⚙️ Settings")
 
+    # Only show Ollama if running locally — not available on cloud deployment
+    providers = ["ollama", "openai", "anthropic"] if ollama_available() else ["openai", "anthropic"]
     provider = st.selectbox(
         "LLM Provider",
-        ["ollama", "openai", "anthropic"],
+        providers,
         help="Select which model to use for SQL generation"
     )
 
