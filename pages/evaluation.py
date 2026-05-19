@@ -36,8 +36,8 @@ TEST_QUESTIONS = [
 # ── Provider registry ──────────────────────────────────────────────────────────
 # available=False means API key not yet configured — checkbox will be disabled
 PROVIDERS = {
-    "ollama":    {"label": "Ollama (gpt-oss)",     "available": True},
-    "openai":    {"label": "OpenAI (gpt-4o)",       "available": False},
+    "ollama":    {"label": "Ollama (local)",        "available": True},
+    "openai":    {"label": "OpenAI (gpt-4o)",       "available": True},
     "anthropic": {"label": "Anthropic (Claude)",    "available": False},
 }
 
@@ -56,7 +56,7 @@ for i, (key, info) in enumerate(PROVIDERS.items()):
         else:
             # Disabled checkbox with explanation
             st.checkbox(info["label"], value=False, disabled=True)
-            st.caption("⚠️ API key required")
+            st.caption("⚠️ Coming soon")
 
 # ── Question selector ──────────────────────────────────────────────────────────
 st.subheader("2. Select Test Questions")
@@ -147,14 +147,62 @@ if st.button("▶ Run Evaluation", type="primary", use_container_width=True):
                     delta=f"Avg {avg_time:.1f}s" if pass_count > 0 else "No passes"
                 )
 
-        # ── Detailed results table ─────────────────────────────────────────────
-        st.subheader("Detailed Results")
-        # Drop SQL column from the main table — shown separately in expander
-        display_df = df_results.drop(columns=["SQL"])
-        st.dataframe(display_df, use_container_width=True)
+        # ── Comparison table (pivot: questions as rows, providers as columns) ────
+        st.subheader("Comparison Table")
+
+        # Build one column per provider showing "✓ 2.1s  5 rows" or "✗ Error"
+        pivot_data = {"Question": selected_questions}
+        for provider in selected_providers:
+            label = PROVIDERS[provider]["label"]
+            col_values = []
+            for question in selected_questions:
+                match = df_results[
+                    (df_results["Provider"] == provider) &
+                    (df_results["Question"] == question)
+                ]
+                if not match.empty:
+                    row = match.iloc[0]
+                    if row["Status"] == "✓ Pass":
+                        col_values.append(f"✓  {row['Time (s)']}s  {int(row['Rows'])} rows")
+                    else:
+                        col_values.append("✗  Failed")
+                else:
+                    col_values.append("—")
+            pivot_data[label] = col_values
+
+        pivot_df = pd.DataFrame(pivot_data).set_index("Question")
+
+        # Colour cells: green for pass, red for fail
+        def highlight_cells(val):
+            if str(val).startswith("✓"):
+                return "background-color: #d4edda; color: #155724; font-weight: bold"
+            elif str(val).startswith("✗"):
+                return "background-color: #f8d7da; color: #721c24; font-weight: bold"
+            return ""
+
+        styled = pivot_df.style.map(highlight_cells)
+        st.dataframe(styled, use_container_width=True)
+
+        # ── Summary row beneath the table ──────────────────────────────────────
+        summary_data = {"Metric": ["Execution Rate", "Avg Latency (passed only)"]}
+        for provider in selected_providers:
+            label = PROVIDERS[provider]["label"]
+            provider_df = df_results[df_results["Provider"] == provider]
+            pass_count = len(provider_df[provider_df["Status"] == "✓ Pass"])
+            total_q    = len(provider_df)
+            passed_df  = provider_df[provider_df["Status"] == "✓ Pass"]
+            avg_time   = passed_df["Time (s)"].mean() if not passed_df.empty else 0
+            summary_data[label] = [
+                f"{pass_count}/{total_q}  ({int(pass_count/total_q*100)}%)" if total_q > 0 else "—",
+                f"{avg_time:.1f}s" if pass_count > 0 else "—"
+            ]
+
+        st.dataframe(
+            pd.DataFrame(summary_data).set_index("Metric"),
+            use_container_width=True
+        )
 
         # ── Generated SQL viewer ───────────────────────────────────────────────
-        # Collapsed by default to keep the page clean
         with st.expander("🔍 View Generated SQL for Each Run"):
             for _, row in df_results.iterrows():
                 st.markdown(

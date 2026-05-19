@@ -37,11 +37,11 @@ with st.sidebar:
     )
 
     if provider == "openai":
-        st.warning("OpenAI API key required. Add it to your .env file.")
+        st.success("OpenAI (GPT-4o) selected")
     elif provider == "anthropic":
-        st.warning("Anthropic API key required. Add it to your .env file.")
+        st.warning("Anthropic API key required")
     else:
-        st.success("Local model — no API key needed")
+        st.info("Ollama runs locally only — not available on the live app")
 
     st.divider()
     st.markdown("**About this app**")
