@@ -20,7 +20,7 @@ def embed_ollama(text):
     return response["embedding"]
 
 def get_embedding(text):
-    provider = os.getenv("EMBEDDING_PROVIDER","ollama")
+    provider = os.getenv("EMBEDDING_PROVIDER", "openai")
     if provider == "ollama":
         return embed_ollama(text)
     elif provider == "openai":

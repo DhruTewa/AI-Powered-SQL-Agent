@@ -15,3 +15,5 @@ sqlalchemy
 python-dotenv
 chromadb
 streamlit
+matplotlib
+python-pptx

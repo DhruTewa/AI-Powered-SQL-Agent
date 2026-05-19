@@ -1,0 +1,189 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1400 932" font-family="'Segoe UI','Helvetica Neue',Arial,sans-serif">
+  <defs>
+    <filter id="s" x="-8%" y="-8%" width="120%" height="120%">
+      <feDropShadow dx="0" dy="2" stdDeviation="4" flood-color="#1B365D" flood-opacity="0.10"/>
+    </filter>
+    <marker id="arr" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto">
+      <path d="M0,1 L9,5 L0,9 Z" fill="#78909C"/>
+    </marker>
+  </defs>
+
+  <!-- ── Background ─────────────────────────────────────────────────── -->
+  <rect width="1400" height="932" fill="#FFFFFF"/>
+
+  <!-- ── Title ─────────────────────────────────────────────────────── -->
+  <text x="700" y="46" text-anchor="middle" font-size="26" font-weight="700" fill="#1B365D" letter-spacing=".5">AI-Powered SQL Agent</text>
+  <text x="700" y="68" text-anchor="middle" font-size="13" fill="#006D77" letter-spacing="2">SYSTEM ARCHITECTURE</text>
+  <line x1="60" y1="82" x2="1340" y2="82" stroke="#CFD8DC" stroke-width="1"/>
+
+  <!-- ═══════════════════════════════════════════════════════════════════
+       LAYER 1 — PRESENTATION
+  ═══════════════════════════════════════════════════════════════════ -->
+  <rect x="56" y="94" width="1288" height="178" rx="8" fill="#EBF3FB" stroke="#90CAF9" stroke-width="1.5" stroke-dasharray="6 3"/>
+  <text transform="translate(78,183) rotate(-90)" text-anchor="middle" font-size="12" font-weight="700" fill="#2E75B6" letter-spacing="2">PRESENTATION LAYER</text>
+
+  <!-- About (first in sidebar nav) -->
+  <rect x="116" y="108" width="352" height="148" rx="7" fill="#DBEAF7" stroke="#2E75B6" stroke-width="1.8" filter="url(#s)"/>
+  <text x="292" y="170" text-anchor="middle" font-size="14" font-weight="700" fill="#1B365D">📖  About</text>
+  <text x="292" y="190" text-anchor="middle" font-size="10" fill="#546E7A">Architecture &amp; Documentation</text>
+  <text x="292" y="208" text-anchor="middle" font-size="9" fill="#78909C">pages/about.py</text>
+
+  <!-- SQL Agent (second in sidebar nav) -->
+  <rect x="524" y="108" width="352" height="148" rx="7" fill="#DBEAF7" stroke="#2E75B6" stroke-width="1.8" filter="url(#s)"/>
+  <text x="700" y="170" text-anchor="middle" font-size="14" font-weight="700" fill="#1B365D">🤖  SQL Agent</text>
+  <text x="700" y="190" text-anchor="middle" font-size="10" fill="#546E7A">Natural Language Query Interface</text>
+  <text x="700" y="208" text-anchor="middle" font-size="9" fill="#78909C">pages/query.py</text>
+
+  <!-- Evaluation (third in sidebar nav) -->
+  <rect x="932" y="108" width="352" height="148" rx="7" fill="#DBEAF7" stroke="#2E75B6" stroke-width="1.8" filter="url(#s)"/>
+  <text x="1108" y="170" text-anchor="middle" font-size="14" font-weight="700" fill="#1B365D">📊  Evaluation</text>
+  <text x="1108" y="190" text-anchor="middle" font-size="10" fill="#546E7A">Model Benchmarking &amp; Comparison</text>
+  <text x="1108" y="208" text-anchor="middle" font-size="9" fill="#78909C">pages/evaluation.py</text>
+
+  <!-- Arrows: Presentation → Application -->
+  <line x1="292" y1="256" x2="292" y2="292" stroke="#90A4AE" stroke-width="1.8" marker-end="url(#arr)"/>
+  <line x1="700" y1="256" x2="700" y2="292" stroke="#90A4AE" stroke-width="1.8" marker-end="url(#arr)"/>
+  <line x1="1108" y1="256" x2="1108" y2="292" stroke="#90A4AE" stroke-width="1.8" marker-end="url(#arr)"/>
+
+  <!-- ═══════════════════════════════════════════════════════════════════
+       LAYER 2 — APPLICATION
+  ═══════════════════════════════════════════════════════════════════ -->
+  <rect x="56" y="294" width="1288" height="248" rx="8" fill="#EFF9EF" stroke="#A5D6A7" stroke-width="1.5" stroke-dasharray="6 3"/>
+  <text transform="translate(78,418) rotate(-90)" text-anchor="middle" font-size="12" font-weight="700" fill="#2E7D32" letter-spacing="2">APPLICATION LAYER</text>
+
+  <!-- Core pipeline row (y=308, h=92) -->
+  <rect x="116" y="308" width="220" height="92" rx="6" fill="#E8F5E9" stroke="#2E7D32" stroke-width="1.7" filter="url(#s)"/>
+  <text x="226" y="349" text-anchor="middle" font-size="12" font-weight="700" fill="#1B5E20">agent.py</text>
+  <text x="226" y="366" text-anchor="middle" font-size="9" fill="#546E7A">Pipeline Orchestrator</text>
+
+  <rect x="352" y="308" width="220" height="92" rx="6" fill="#E8F5E9" stroke="#2E7D32" stroke-width="1.7" filter="url(#s)"/>
+  <text x="462" y="349" text-anchor="middle" font-size="12" font-weight="700" fill="#1B5E20">llm.py</text>
+  <text x="462" y="366" text-anchor="middle" font-size="9" fill="#546E7A">LLM Provider Router</text>
+
+  <rect x="588" y="308" width="220" height="92" rx="6" fill="#E8F5E9" stroke="#2E7D32" stroke-width="1.7" filter="url(#s)"/>
+  <text x="698" y="349" text-anchor="middle" font-size="12" font-weight="700" fill="#1B5E20">retriever.py</text>
+  <text x="698" y="366" text-anchor="middle" font-size="9" fill="#546E7A">RAG Schema Retrieval</text>
+
+  <rect x="824" y="308" width="220" height="92" rx="6" fill="#E8F5E9" stroke="#2E7D32" stroke-width="1.7" filter="url(#s)"/>
+  <text x="934" y="349" text-anchor="middle" font-size="12" font-weight="700" fill="#1B5E20">validator.py</text>
+  <text x="934" y="366" text-anchor="middle" font-size="9" fill="#546E7A">SQL Safety Guard</text>
+
+  <rect x="1060" y="308" width="220" height="92" rx="6" fill="#E8F5E9" stroke="#2E7D32" stroke-width="1.7" filter="url(#s)"/>
+  <text x="1170" y="349" text-anchor="middle" font-size="12" font-weight="700" fill="#1B5E20">embedder.py</text>
+  <text x="1170" y="366" text-anchor="middle" font-size="9" fill="#546E7A">Schema Indexer</text>
+
+  <!-- Support row (y=416, h=108) -->
+  <rect x="116" y="416" width="284" height="108" rx="6" fill="#F1FBF1" stroke="#81C784" stroke-width="1.4" filter="url(#s)"/>
+  <text x="258" y="458" text-anchor="middle" font-size="11" font-weight="700" fill="#2E7D32">schema_context.py</text>
+  <text x="258" y="476" text-anchor="middle" font-size="9" fill="#546E7A">Schema Fetcher</text>
+  <text x="258" y="492" text-anchor="middle" font-size="9" fill="#78909C">87-table schema reader</text>
+
+  <rect x="416" y="416" width="284" height="108" rx="6" fill="#F1FBF1" stroke="#81C784" stroke-width="1.4" filter="url(#s)"/>
+  <text x="558" y="458" text-anchor="middle" font-size="11" font-weight="700" fill="#2E7D32">descriptions.py</text>
+  <text x="558" y="476" text-anchor="middle" font-size="9" fill="#546E7A">Table Descriptions</text>
+  <text x="558" y="492" text-anchor="middle" font-size="9" fill="#78909C">Business-language context</text>
+
+  <rect x="716" y="416" width="284" height="108" rx="6" fill="#F1FBF1" stroke="#81C784" stroke-width="1.4" filter="url(#s)"/>
+  <text x="858" y="458" text-anchor="middle" font-size="11" font-weight="700" fill="#2E7D32">embedding.py</text>
+  <text x="858" y="476" text-anchor="middle" font-size="9" fill="#546E7A">Embedding Router</text>
+  <text x="858" y="492" text-anchor="middle" font-size="9" fill="#78909C">OpenAI / Ollama</text>
+
+  <rect x="1016" y="416" width="264" height="108" rx="6" fill="#F1FBF1" stroke="#81C784" stroke-width="1.4" filter="url(#s)"/>
+  <text x="1148" y="458" text-anchor="middle" font-size="11" font-weight="700" fill="#2E7D32">ui.py</text>
+  <text x="1148" y="476" text-anchor="middle" font-size="9" fill="#546E7A">Shared Components</text>
+  <text x="1148" y="492" text-anchor="middle" font-size="9" fill="#78909C">Header + Ollama detection</text>
+
+  <!-- Arrows: Application → Data -->
+  <line x1="268" y1="542" x2="268" y2="566" stroke="#90A4AE" stroke-width="1.8" marker-end="url(#arr)"/>
+  <line x1="700" y1="542" x2="700" y2="566" stroke="#90A4AE" stroke-width="1.8" marker-end="url(#arr)"/>
+  <line x1="1140" y1="542" x2="1140" y2="566" stroke="#90A4AE" stroke-width="1.8" marker-end="url(#arr)"/>
+
+  <!-- ═══════════════════════════════════════════════════════════════════
+       LAYER 3 — DATA & SERVICES
+  ═══════════════════════════════════════════════════════════════════ -->
+
+  <!-- ChromaDB -->
+  <rect x="56" y="566" width="422" height="316" rx="8" fill="#F3E5F5" stroke="#CE93D8" stroke-width="1.5" stroke-dasharray="6 3"/>
+  <text transform="translate(80,724) rotate(-90)" text-anchor="middle" font-size="12" font-weight="700" fill="#5C2D91" letter-spacing="2">VECTOR STORE</text>
+  <rect x="104" y="594" width="346" height="262" rx="7" fill="#EDE7F6" stroke="#5C2D91" stroke-width="1.8" filter="url(#s)"/>
+  <text x="277" y="652" text-anchor="middle" font-size="17" font-weight="700" fill="#4A235A">ChromaDB</text>
+  <text x="277" y="673" text-anchor="middle" font-size="10.5" fill="#5C2D91">Vector Store</text>
+  <line x1="126" y1="684" x2="428" y2="684" stroke="#CE93D8" stroke-width="0.8"/>
+  <text x="277" y="706" text-anchor="middle" font-size="9.5" fill="#546E7A">Embedding Model</text>
+  <text x="277" y="724" text-anchor="middle" font-size="9.5" font-weight="600" fill="#4A235A">text-embedding-3-small</text>
+  <text x="277" y="742" text-anchor="middle" font-size="9.5" fill="#546E7A">87 tables indexed</text>
+  <text x="277" y="768" text-anchor="middle" font-size="9.5" fill="#546E7A">Top 8 relevant tables</text>
+  <text x="277" y="784" text-anchor="middle" font-size="9.5" fill="#546E7A">retrieved per query</text>
+  <text x="277" y="810" text-anchor="middle" font-size="9.5" fill="#546E7A">25,000 chars → ~3,000 chars</text>
+  <text x="277" y="826" text-anchor="middle" font-size="9.5" fill="#78909C">~85% context reduction</text>
+
+  <!-- LLM Providers -->
+  <rect x="490" y="566" width="428" height="316" rx="8" fill="#FFF8E1" stroke="#FFD54F" stroke-width="1.5" stroke-dasharray="6 3"/>
+  <text transform="translate(514,724) rotate(-90)" text-anchor="middle" font-size="12" font-weight="700" fill="#C55A11" letter-spacing="2">LLM PROVIDERS</text>
+
+  <!-- OpenAI: x=524, w=124, center=586 -->
+  <rect x="524" y="594" width="124" height="262" rx="6" fill="#FCE4D6" stroke="#C55A11" stroke-width="1.7" filter="url(#s)"/>
+  <text x="586" y="650" text-anchor="middle" font-size="13" font-weight="700" fill="#7B3F00">OpenAI</text>
+  <text x="586" y="668" text-anchor="middle" font-size="9.5" fill="#5D3A1A">GPT-4o</text>
+  <line x1="537" y1="678" x2="635" y2="678" stroke="#E8A87C" stroke-width="0.8"/>
+  <text x="586" y="700" text-anchor="middle" font-size="8.5" fill="#546E7A">Cloud API</text>
+  <text x="586" y="716" text-anchor="middle" font-size="8.5" fill="#546E7A">128K context</text>
+  <text x="586" y="740" text-anchor="middle" font-size="8.5" fill="#546E7A">Best accuracy</text>
+  <text x="586" y="756" text-anchor="middle" font-size="8.5" fill="#78909C">API key req.</text>
+
+  <!-- Anthropic: x=659, w=124, center=721 -->
+  <rect x="659" y="594" width="124" height="262" rx="6" fill="#FCE4D6" stroke="#C55A11" stroke-width="1.7" filter="url(#s)"/>
+  <text x="721" y="650" text-anchor="middle" font-size="13" font-weight="700" fill="#7B3F00">Anthropic</text>
+  <text x="721" y="668" text-anchor="middle" font-size="9.5" fill="#5D3A1A">Claude</text>
+  <line x1="672" y1="678" x2="770" y2="678" stroke="#E8A87C" stroke-width="0.8"/>
+  <text x="721" y="700" text-anchor="middle" font-size="8.5" fill="#546E7A">Cloud API</text>
+  <text x="721" y="716" text-anchor="middle" font-size="8.5" fill="#546E7A">200K context</text>
+  <text x="721" y="740" text-anchor="middle" font-size="8.5" fill="#546E7A">Coming soon</text>
+  <text x="721" y="756" text-anchor="middle" font-size="8.5" fill="#78909C">API key req.</text>
+
+  <!-- Ollama: x=794, w=124, center=856, ends at 918 -->
+  <rect x="794" y="594" width="124" height="262" rx="6" fill="#FCE4D6" stroke="#C55A11" stroke-width="1.7" filter="url(#s)"/>
+  <text x="856" y="650" text-anchor="middle" font-size="13" font-weight="700" fill="#7B3F00">Ollama</text>
+  <text x="856" y="668" text-anchor="middle" font-size="9.5" fill="#5D3A1A">Local LLMs</text>
+  <line x1="807" y1="678" x2="905" y2="678" stroke="#E8A87C" stroke-width="0.8"/>
+  <text x="856" y="700" text-anchor="middle" font-size="8.5" fill="#546E7A">Runs locally</text>
+  <text x="856" y="716" text-anchor="middle" font-size="8.5" fill="#546E7A">No API key</text>
+  <text x="856" y="740" text-anchor="middle" font-size="8.5" fill="#546E7A">Works offline</text>
+  <text x="856" y="756" text-anchor="middle" font-size="8.5" fill="#78909C">Dev / privacy</text>
+
+  <!-- Neon PostgreSQL -->
+  <rect x="930" y="566" width="414" height="316" rx="8" fill="#E3F2FD" stroke="#90CAF9" stroke-width="1.5" stroke-dasharray="6 3"/>
+  <text transform="translate(954,724) rotate(-90)" text-anchor="middle" font-size="12" font-weight="700" fill="#2E75B6" letter-spacing="2">DATABASE LAYER</text>
+  <rect x="978" y="594" width="330" height="262" rx="7" fill="#DBEAF7" stroke="#2E75B6" stroke-width="1.8" filter="url(#s)"/>
+  <text x="1143" y="652" text-anchor="middle" font-size="17" font-weight="700" fill="#1B365D">Neon PostgreSQL</text>
+  <text x="1143" y="673" text-anchor="middle" font-size="10.5" fill="#2E75B6">AdventureWorks</text>
+  <line x1="1000" y1="684" x2="1286" y2="684" stroke="#90CAF9" stroke-width="0.8"/>
+  <text x="1143" y="706" text-anchor="middle" font-size="9.5" fill="#546E7A">87 tables · 5 schemas</text>
+  <text x="1143" y="724" text-anchor="middle" font-size="9.5" fill="#546E7A">Serverless · Direct IPv4</text>
+  <text x="1143" y="750" text-anchor="middle" font-size="9.5" font-weight="600" fill="#1B365D">121,317 sales records</text>
+  <text x="1143" y="768" text-anchor="middle" font-size="9.5" fill="#546E7A">504 products</text>
+  <text x="1143" y="784" text-anchor="middle" font-size="9.5" fill="#546E7A">290 employees</text>
+  <text x="1143" y="810" text-anchor="middle" font-size="9.5" fill="#546E7A">Read-only · SQLAlchemy</text>
+  <text x="1143" y="826" text-anchor="middle" font-size="9.5" fill="#78909C">neon.tech free tier</text>
+
+  <!-- ── Legend ─────────────────────────────────────────────────────── -->
+  <rect x="56" y="890" width="1288" height="2" fill="#CFD8DC"/>
+  <rect x="56" y="893" width="1288" height="32" rx="5" fill="#F5F7FA"/>
+
+  <rect x="108" y="902" width="18" height="14" rx="3" fill="#DBEAF7" stroke="#2E75B6" stroke-width="1.8"/>
+  <text x="134" y="913" font-size="12" font-weight="600" fill="#1B365D">UI Components</text>
+
+  <rect x="290" y="902" width="18" height="14" rx="3" fill="#E8F5E9" stroke="#2E7D32" stroke-width="1.8"/>
+  <text x="316" y="913" font-size="12" font-weight="600" fill="#2E7D32">Core Modules</text>
+
+  <rect x="476" y="902" width="18" height="14" rx="3" fill="#EDE7F6" stroke="#5C2D91" stroke-width="1.8"/>
+  <text x="502" y="913" font-size="12" font-weight="600" fill="#5C2D91">Vector Store</text>
+
+  <rect x="652" y="902" width="18" height="14" rx="3" fill="#FCE4D6" stroke="#C55A11" stroke-width="1.8"/>
+  <text x="678" y="913" font-size="12" font-weight="600" fill="#C55A11">LLM Providers</text>
+
+  <rect x="848" y="902" width="18" height="14" rx="3" fill="#DBEAF7" stroke="#2E75B6" stroke-width="1.8"/>
+  <text x="874" y="913" font-size="12" font-weight="600" fill="#1B365D">Database</text>
+
+  <text x="1336" y="913" text-anchor="end" font-size="10" fill="#90A4AE">AI-Powered SQL Agent · github.com/DhruTewa</text>
+</svg>

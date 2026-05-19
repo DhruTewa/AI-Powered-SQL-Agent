@@ -1,0 +1,115 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 1090" font-family="'Segoe UI','Helvetica Neue',Arial,sans-serif">
+  <defs>
+    <filter id="s" x="-10%" y="-10%" width="125%" height="125%">
+      <feDropShadow dx="0" dy="2" stdDeviation="4" flood-color="#1B365D" flood-opacity="0.10"/>
+    </filter>
+    <marker id="arr" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto">
+      <path d="M0,1 L9,5 L0,9 Z" fill="#78909C"/>
+    </marker>
+    <marker id="arr-red" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto">
+      <path d="M0,1 L9,5 L0,9 Z" fill="#C62828"/>
+    </marker>
+  </defs>
+
+  <!-- Background -->
+  <rect width="720" height="1090" fill="#FFFFFF"/>
+
+  <!-- ── Title ──────────────────────────────────────────────────────── -->
+  <text x="360" y="44" text-anchor="middle" font-size="22" font-weight="700" fill="#1B365D" letter-spacing=".5">Query Pipeline Flow</text>
+  <text x="360" y="65" text-anchor="middle" font-size="12" fill="#006D77" letter-spacing="1.5">FROM USER QUESTION TO SQL RESULT</text>
+  <line x1="60" y1="78" x2="660" y2="78" stroke="#CFD8DC" stroke-width="1"/>
+
+  <!-- ══════════════════════════════════════════════════════════════
+       STEPS  (badge x=90, box x=140–630, step height=106, gap=28)
+       step tops: 94, 228, 362, 496, 630, 764, 898
+  ══════════════════════════════════════════════════════════════ -->
+
+  <!-- STEP 1 ── User Question -->
+  <rect x="90" y="94" width="42" height="106" rx="6" fill="#2E75B6"/>
+  <text x="111" y="147" text-anchor="middle" font-size="22" font-weight="700" fill="#FFFFFF">1</text>
+  <rect x="144" y="94" width="490" height="106" rx="7" fill="#DBEAF7" stroke="#2E75B6" stroke-width="1.8" filter="url(#s)"/>
+  <text x="389" y="138" text-anchor="middle" font-size="15" font-weight="700" fill="#1B365D">User Question</text>
+  <text x="389" y="158" text-anchor="middle" font-size="10" fill="#546E7A">Natural language business question typed into the Streamlit UI</text>
+  <text x="389" y="178" text-anchor="middle" font-size="9.5" fill="#78909C">e.g. "What are the top 5 products by total sales amount?"</text>
+
+  <!-- Arrow 1→2 -->
+  <line x1="360" y1="200" x2="360" y2="226" stroke="#90A4AE" stroke-width="1.8" marker-end="url(#arr)"/>
+
+  <!-- STEP 2 ── RAG Retrieval -->
+  <rect x="90" y="228" width="42" height="106" rx="6" fill="#5C2D91"/>
+  <text x="111" y="281" text-anchor="middle" font-size="22" font-weight="700" fill="#FFFFFF">2</text>
+  <rect x="144" y="228" width="490" height="106" rx="7" fill="#EDE7F6" stroke="#5C2D91" stroke-width="1.8" filter="url(#s)"/>
+  <text x="389" y="272" text-anchor="middle" font-size="15" font-weight="700" fill="#4A235A">RAG Retrieval</text>
+  <text x="389" y="292" text-anchor="middle" font-size="10" fill="#546E7A">Question embedded via OpenAI text-embedding-3-small</text>
+  <text x="389" y="312" text-anchor="middle" font-size="9.5" fill="#78909C">ChromaDB returns top 8 most relevant tables from 87 indexed</text>
+
+  <!-- Arrow 2→3 -->
+  <line x1="360" y1="334" x2="360" y2="360" stroke="#90A4AE" stroke-width="1.8" marker-end="url(#arr)"/>
+
+  <!-- STEP 3 ── Prompt Builder -->
+  <rect x="90" y="362" width="42" height="106" rx="6" fill="#2E7D32"/>
+  <text x="111" y="415" text-anchor="middle" font-size="22" font-weight="700" fill="#FFFFFF">3</text>
+  <rect x="144" y="362" width="490" height="106" rx="7" fill="#E8F5E9" stroke="#2E7D32" stroke-width="1.8" filter="url(#s)"/>
+  <text x="389" y="406" text-anchor="middle" font-size="15" font-weight="700" fill="#1B5E20">Prompt Builder</text>
+  <text x="389" y="426" text-anchor="middle" font-size="10" fill="#546E7A">User question + retrieved schema context combined into a structured prompt</text>
+  <text x="389" y="446" text-anchor="middle" font-size="9.5" fill="#78909C">Includes rules: PostgreSQL dialect, schema-qualification, SELECT only</text>
+
+  <!-- Arrow 3→4 -->
+  <line x1="360" y1="468" x2="360" y2="494" stroke="#90A4AE" stroke-width="1.8" marker-end="url(#arr)"/>
+
+  <!-- STEP 4 ── LLM Call -->
+  <rect x="90" y="496" width="42" height="106" rx="6" fill="#C55A11"/>
+  <text x="111" y="549" text-anchor="middle" font-size="22" font-weight="700" fill="#FFFFFF">4</text>
+  <rect x="144" y="496" width="490" height="106" rx="7" fill="#FCE4D6" stroke="#C55A11" stroke-width="1.8" filter="url(#s)"/>
+  <text x="389" y="540" text-anchor="middle" font-size="15" font-weight="700" fill="#7B3F00">LLM Call</text>
+  <text x="389" y="560" text-anchor="middle" font-size="10" fill="#546E7A">Prompt sent to selected provider — OpenAI GPT-4o, Anthropic Claude, or Ollama</text>
+  <text x="389" y="580" text-anchor="middle" font-size="9.5" fill="#78909C">Provider-agnostic routing via core/llm.py · Exponential backoff on rate limits</text>
+
+  <!-- Arrow 4→5 -->
+  <line x1="360" y1="602" x2="360" y2="628" stroke="#90A4AE" stroke-width="1.8" marker-end="url(#arr)"/>
+
+  <!-- STEP 5 ── SQL Validator -->
+  <rect x="90" y="630" width="42" height="106" rx="6" fill="#BF360C"/>
+  <text x="111" y="683" text-anchor="middle" font-size="22" font-weight="700" fill="#FFFFFF">5</text>
+  <rect x="144" y="630" width="490" height="106" rx="7" fill="#FCE4D6" stroke="#BF360C" stroke-width="1.8" filter="url(#s)"/>
+  <text x="389" y="674" text-anchor="middle" font-size="15" font-weight="700" fill="#BF360C">SQL Validator</text>
+  <text x="389" y="694" text-anchor="middle" font-size="10" fill="#546E7A">Rejects DROP, DELETE, UPDATE, INSERT, TRUNCATE, ALTER</text>
+  <text x="389" y="714" text-anchor="middle" font-size="9.5" fill="#78909C">Must start with SELECT or WITH · Non-SQL responses rejected</text>
+
+  <!-- Rejection branch -->
+  <line x1="634" y1="683" x2="676" y2="683" stroke="#C62828" stroke-width="1.6" marker-end="url(#arr-red)"/>
+  <text x="640" y="676" font-size="8.5" fill="#C62828" font-weight="600">fail</text>
+  <rect x="676" y="658" width="34" height="50" rx="4" fill="#FFEBEE" stroke="#C62828" stroke-width="1.4"/>
+  <text x="693" y="680" text-anchor="middle" font-size="8" font-weight="700" fill="#C62828">Re-</text>
+  <text x="693" y="693" text-anchor="middle" font-size="8" font-weight="700" fill="#C62828">ject</text>
+
+  <!-- "pass" label -->
+  <text x="370" y="624" font-size="8.5" fill="#2E7D32" font-weight="600">pass</text>
+
+  <!-- Arrow 5→6 -->
+  <line x1="360" y1="736" x2="360" y2="762" stroke="#90A4AE" stroke-width="1.8" marker-end="url(#arr)"/>
+
+  <!-- STEP 6 ── Execute Query -->
+  <rect x="90" y="764" width="42" height="106" rx="6" fill="#006D77"/>
+  <text x="111" y="817" text-anchor="middle" font-size="22" font-weight="700" fill="#FFFFFF">6</text>
+  <rect x="144" y="764" width="490" height="106" rx="7" fill="#D0ECF0" stroke="#006D77" stroke-width="1.8" filter="url(#s)"/>
+  <text x="389" y="808" text-anchor="middle" font-size="15" font-weight="700" fill="#004D56">Execute Query</text>
+  <text x="389" y="828" text-anchor="middle" font-size="10" fill="#546E7A">Validated SQL executed against Neon PostgreSQL via SQLAlchemy</text>
+  <text x="389" y="848" text-anchor="middle" font-size="9.5" fill="#78909C">Read-only transaction · Self-correction loop on execution error</text>
+
+  <!-- Arrow 6→7 -->
+  <line x1="360" y1="870" x2="360" y2="896" stroke="#90A4AE" stroke-width="1.8" marker-end="url(#arr)"/>
+
+  <!-- STEP 7 ── Return Results -->
+  <rect x="90" y="898" width="42" height="106" rx="6" fill="#1B365D"/>
+  <text x="111" y="951" text-anchor="middle" font-size="22" font-weight="700" fill="#FFFFFF">7</text>
+  <rect x="144" y="898" width="490" height="106" rx="7" fill="#DBEAF7" stroke="#1B365D" stroke-width="1.8" filter="url(#s)"/>
+  <text x="389" y="942" text-anchor="middle" font-size="15" font-weight="700" fill="#1B365D">Return Results</text>
+  <text x="389" y="962" text-anchor="middle" font-size="10" fill="#546E7A">Query results returned as a pandas DataFrame</text>
+  <text x="389" y="982" text-anchor="middle" font-size="9.5" fill="#78909C">Displayed in Streamlit table · Query history saved to session state</text>
+
+  <!-- ── Footer ─────────────────────────────────────────────────────── -->
+  <line x1="60" y1="1018" x2="660" y2="1018" stroke="#CFD8DC" stroke-width="1"/>
+  <text x="360" y="1036" text-anchor="middle" font-size="9" fill="#90A4AE">AI-Powered SQL Agent · Query Pipeline · github.com/DhruTewa</text>
+  <text x="360" y="1052" text-anchor="middle" font-size="9" fill="#90A4AE">Provider-agnostic · RAG-grounded · Read-only by design</text>
+</svg>
