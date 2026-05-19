@@ -1,0 +1,6 @@
+SQLAGENT/
+chroma_db/
+.git/
+.env
+__pycache__/
+*.pyc

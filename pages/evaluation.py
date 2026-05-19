@@ -181,7 +181,7 @@ if st.button("▶ Run Evaluation", type="primary", use_container_width=True):
             return ""
 
         styled = pivot_df.style.map(highlight_cells)
-        st.dataframe(styled, use_container_width=True)
+        st.dataframe(styled, width='stretch')
 
         # ── Summary row beneath the table ──────────────────────────────────────
         summary_data = {"Metric": ["Execution Rate", "Avg Latency (passed only)"]}
@@ -199,7 +199,7 @@ if st.button("▶ Run Evaluation", type="primary", use_container_width=True):
 
         st.dataframe(
             pd.DataFrame(summary_data).set_index("Metric"),
-            use_container_width=True
+            width='stretch'
         )
 
         # ── Generated SQL viewer ───────────────────────────────────────────────

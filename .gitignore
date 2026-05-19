@@ -3,10 +3,16 @@
 /SQLAGENT
 .env
 PROGRESS.md
+TECHNICAL_NOTES.md
 # Database dump files
 adventureworks*.sql
 *_import_log.txt
 import_log.txt
+
+# Local learning visuals — not for repo
+docs/docker_visual.html
+docs/project_workflow.html
+docs/pipeline_trace.html
 
 # Virtual environments
 venv/

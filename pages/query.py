@@ -97,7 +97,7 @@ if st.button("Run Query", type="primary", use_container_width=True):
 
             with col2:
                 st.subheader("Results")
-                st.dataframe(result, use_container_width=True)
+                st.dataframe(result, width='stretch')
 
             st.caption(
                 f"✓ {len(result)} row(s) · "

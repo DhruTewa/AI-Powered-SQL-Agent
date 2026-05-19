@@ -9,6 +9,7 @@
 [![Anthropic](https://img.shields.io/badge/Anthropic-Claude-D97757?style=flat-square)](https://anthropic.com)
 [![PostgreSQL](https://img.shields.io/badge/PostgreSQL-Neon-4169E1?style=flat-square&logo=postgresql&logoColor=white)](https://neon.tech)
 [![Streamlit](https://img.shields.io/badge/Streamlit-Live-FF4B4B?style=flat-square&logo=streamlit&logoColor=white)](https://ai-powered-sql-agent.streamlit.app)
+[![Docker](https://img.shields.io/badge/Docker-Ready-2496ED?style=flat-square&logo=docker&logoColor=white)](https://www.docker.com)
 [![License](https://img.shields.io/badge/License-MIT-yellow?style=flat-square)](LICENSE)
 
 **[🚀 Live Demo →  https://ai-powered-sql-agent.streamlit.app](https://ai-powered-sql-agent.streamlit.app)**
@@ -74,6 +75,7 @@ Type a question. The agent retrieves only the relevant tables using **RAG**, gen
 
 ![Streamlit](https://img.shields.io/badge/Streamlit-FF4B4B?style=for-the-badge&logo=streamlit&logoColor=white)
 ![Streamlit Cloud](https://img.shields.io/badge/Streamlit_Cloud-FF4B4B?style=for-the-badge&logo=streamlit&logoColor=white)
+![Docker](https://img.shields.io/badge/Docker-2496ED?style=for-the-badge&logo=docker&logoColor=white)
 
 </div>
 
@@ -107,6 +109,43 @@ Description: Individual product line items on sales orders including
 
 ---
 
+## Run with Docker
+
+No Python setup required. You need [Docker Desktop](https://www.docker.com/products/docker-desktop/) installed.
+
+**1. Clone the repo**
+```bash
+git clone https://github.com/DhruTewa/AI-Power-SQL-Agent.git
+cd AI-Power-SQL-Agent
+```
+
+**2. Create a `.env` file in the project root**
+```env
+DATABASE_URL=your_neon_connection_string
+LLM_PROVIDER=openai
+OPENAI_API_KEY=your_openai_api_key
+EMBEDDING_PROVIDER=openai
+```
+> Note: values must be unquoted. Docker reads `.env` differently from Python — quotes become part of the value.
+
+**3. Build the image**
+```bash
+docker build -t sql-agent .
+```
+This takes 2–3 minutes the first time. Subsequent builds are fast thanks to layer caching.
+
+**4. Run the container**
+```bash
+docker run -p 8501:8501 --env-file .env sql-agent
+```
+
+**5. Open in your browser**
+```
+http://localhost:8501
+```
+
+---
+
 ## SQL Safety Layer
 
 Every generated query passes through a validator before execution:
@@ -137,10 +176,11 @@ pages/
 ├── query.py          — main SQL agent interface
 └── evaluation.py     — side-by-side model benchmarking
 
-docker/               — Docker setup (Phase 4c)
-docs/                 — SVG architecture diagrams, screenshots, PowerPoint
+docs/                 — SVG architecture diagrams, screenshots
 app.py                — Streamlit page router
 main.py               — CLI entry point: python main.py "your question"
+Dockerfile            — Docker image recipe
+.dockerignore         — excludes venv, vector store, secrets from image
 explore_db.py         — database schema explorer utility
 chroma_db/            — ChromaDB vector store (pre-indexed, 87 tables)
 ```
